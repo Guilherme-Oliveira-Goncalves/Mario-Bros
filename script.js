@@ -1,8 +1,15 @@
 const mario = document.querySelector(".mario");
 const pipe = document.querySelector(".pipe");
 const scoreDisplay = document.querySelector(".score");
-
+const restartButton = document.querySelector(".restart-button");
 let score = 0;
+let isGameOver = false;
+let gameLoop;
+
+const updateScore = () => {
+  score += 1;
+  scoreDisplay.textContent = score;
+};
 
 const jump = () => {
   mario.classList.add("jump");
@@ -11,12 +18,7 @@ const jump = () => {
   }, 500);
 };
 
-const updateScore = () => {
-  score = score + 1;
-  scoreDisplay.innerText = score;
-};
-
-const loop = setInterval(() => {
+const loop = () => {
   const pipePosition = pipe.offsetLeft;
   const marioPosition = +window
     .getComputedStyle(mario)
@@ -33,10 +35,38 @@ const loop = setInterval(() => {
     mario.style.width = "75px";
     mario.style.marginLeft = "50px";
 
-    clearInterval(loop);
-  } else if (marioPosition > 80 && marioPosition < 88) {
+    gameOver();
+  } else {
+    checkPlacar();
+    if (!isGameOver) {
+      gameLoop = requestAnimationFrame(loop);
+    }
+  }
+};
+
+const checkPlacar = () => {
+  const marioRight = mario.offsetLeft + mario.offsetWidth;
+  const pipeLeft = pipe.offsetLeft;
+
+  if (
+    marioRight > pipeLeft &&
+    marioRight <= pipeLeft + 2 &&
+    mario.classList.contains("jump")
+  ) {
     updateScore();
   }
-}, 10);
+};
+
+function gameOver() {
+  isGameOver = true;
+  cancelAnimationFrame(gameLoop);
+  restartButton.style.display = "block";
+}
+
+function restartGame() {
+  location.reload();
+}
 
 document.addEventListener("keydown", jump);
+restartButton.addEventListener("click", restartGame);
+gameLoop = requestAnimationFrame(loop);
