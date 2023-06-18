@@ -1,7 +1,8 @@
-* {
-  margin: 0;
+body {
+  background-color: #472e15;
+  margin: 0 auto;
   padding: 0;
-  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .game-board {
@@ -16,16 +17,15 @@
 
 .pipe {
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   width: 80px;
-  animation: pipe-animation 2s linear infinite;
+  animation: pipe-animation 1.5s linear infinite;
 }
 
 .mario {
   width: 150px;
   position: absolute;
   bottom: 0;
-
   transition: transform 0.2s;
 }
 
@@ -70,6 +70,28 @@
   z-index: 999;
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.429);
 }
+
+.dinossauro {
+  width: 200px;
+  height: 100px;
+  bottom: 20px;
+  position: absolute;
+  transform: rotate(180deg);
+  animation: dino-animation 15s linear infinite;
+  right: -200px;
+}
+
+.dino_dois {
+  width: 200px;
+  height: 100px;
+  bottom: 15px;
+  position: fixed;
+  transform: rotate(25deg);
+  animation: dino-animation2 15s linear infinite;
+  animation-delay: 7.5s;
+  right: -200px;
+}
+
 @keyframes pipe-animation {
   from {
     right: -80px;
@@ -104,6 +126,30 @@
   }
 
   to {
+    right: 1400px;
+  }
+}
+
+@keyframes dino-animation {
+  0% {
+    right: -200px;
+  }
+  50% {
+    right: 50%;
+  }
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes dino-animation2 {
+  0% {
+    right: -200px;
+  }
+  50% {
+    right: 50%;
+  }
+  100% {
     right: 100%;
   }
 }
