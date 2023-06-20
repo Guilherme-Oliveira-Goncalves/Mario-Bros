@@ -35,8 +35,6 @@ const loop = () => {
     .bottom.replace("px", "");
 
   const cloudsPosition = clouds.offsetLeft;
-  const dinoPosition1 = dino1.offsetLeft;
-  const dinoPosition2 = dino2.offsetLeft;
 
   if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
     pipe.style.animation = "none";
@@ -47,12 +45,6 @@ const loop = () => {
 
     clouds.style.animation = "none";
     clouds.style.left = `${cloudsPosition}px`;
-
-    dino1.style.animation = "none";
-    dino1.style.left = `${dinoPosition1}px`;
-
-    dino2.style.animation = "none";
-    dino2.style.left = `${dinoPosition2}px`;
 
     mario.src = "game-over.png";
     mario.style.width = "75px";
