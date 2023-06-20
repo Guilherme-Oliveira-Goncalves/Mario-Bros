@@ -29,6 +29,9 @@ const jump = () => {
 
 document.addEventListener("touchstart", () => {
   jump();
+  setTimeout(() => {
+    mario.classList.remove("jump");
+  }, 500);
 });
 
 let loopCount = 0;
