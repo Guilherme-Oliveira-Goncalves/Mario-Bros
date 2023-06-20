@@ -27,6 +27,10 @@ const jump = () => {
   }, 500);
 };
 
+document.addEventListener("touchstart", () => {
+  document.querySelector(".mario").classList.add("jump");
+});
+
 let loopCount = 0;
 const loop = () => {
   const pipePosition = pipe.offsetLeft;
