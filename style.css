@@ -108,3 +108,21 @@ body {
     right: 1600px;
   }
 }
+
+@media (max-width: 600px) {
+  .game-board {
+    height: 250px;
+  }
+
+  .pipe {
+    width: 20%;
+  }
+
+  .mario {
+    width: 50%;
+  }
+
+  .clouds {
+    width: 200%;
+  }
+}
