@@ -3,8 +3,7 @@ const pipe = document.querySelector(".pipe");
 const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".restart-button");
 const clouds = document.querySelector(".clouds");
-const dino1 = document.querySelector(".dinossauro");
-const dino2 = document.querySelector(".dino_dois");
+const jumpAudio = document.getElementById("jump-audio");
 
 let score = 0;
 let isGameOver = false;
@@ -16,15 +15,19 @@ const updateScore = () => {
 };
 
 const jump = () => {
-  mario.classList.add("jump");
-  const jumpAudio = document.getElementById("jump-audio");
-  jumpAudio.currentTime = 0;
-  jumpAudio.volume = 0.2;
-  jumpAudio.play();
+  if (!isGameOver) {
+    mario.classList.add("jump");
 
-  setTimeout(() => {
-    mario.classList.remove("jump");
-  }, 500);
+    mario.classList.add("jump");
+
+    jumpAudio.currentTime = 0;
+    jumpAudio.volume = 0.2;
+    jumpAudio.play();
+
+    setTimeout(() => {
+      mario.classList.remove("jump");
+    }, 500);
+  }
 };
 
 document.addEventListener("touchstart", () => {
@@ -69,6 +72,11 @@ const loop = () => {
   }
 };
 
+function stopJumpAudio() {
+  jumpAudio.pause();
+  jumpAudio.currentTime = 0;
+}
+
 function gameOver() {
   isGameOver = true;
   cancelAnimationFrame(gameLoop);
@@ -77,6 +85,8 @@ function gameOver() {
   mario_isdeadaudio.currentTime = 0;
   mario_isdeadaudio.volume = 0.2;
   mario_isdeadaudio.play();
+
+  stopJumpAudio();
 }
 
 function restartGame() {
