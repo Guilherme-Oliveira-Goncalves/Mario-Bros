@@ -28,7 +28,7 @@ const jump = () => {
 };
 
 document.addEventListener("touchstart", () => {
-  document.querySelector(".mario").classList.add("jump");
+  jump();
 });
 
 let loopCount = 0;
